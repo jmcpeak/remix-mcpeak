@@ -6,6 +6,11 @@ on:
       - dev
   pull_request: {}
 
+permissions:
+  actions: write
+  checks: write
+  contents: read
+
 defaults:
   run:
     shell: bash
