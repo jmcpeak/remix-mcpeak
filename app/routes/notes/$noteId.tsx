@@ -7,6 +7,7 @@ import type { Note } from "~/models/note.server";
 import { deleteNote } from "~/models/note.server";
 import { getNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
+import Button from "@mui/material/Button";
 
 type LoaderData = {
   note: Note;
@@ -41,12 +42,9 @@ export default function NoteDetailsPage() {
       <p className="py-6">{data.note.body}</p>
       <hr className="my-4" />
       <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
+        <Button variant="contained" color="primary" type="submit">
           Delete
-        </button>
+        </Button>
       </Form>
     </div>
   );

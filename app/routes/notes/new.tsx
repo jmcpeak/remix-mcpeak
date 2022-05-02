@@ -1,8 +1,10 @@
-import type { ActionFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
 import * as React from "react";
+import type { ActionFunction } from "@remix-run/node";
+import { Form, useActionData } from "@remix-run/react";
+import { json, redirect } from "@remix-run/node";
 
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { createNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 
@@ -62,25 +64,20 @@ export default function NewNotePage() {
         width: "100%",
       }}
     >
-      <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>Title: </span>
-          <input
-            ref={titleRef}
-            name="title"
-            className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
-            aria-invalid={actionData?.errors?.title ? true : undefined}
-            aria-errormessage={
-              actionData?.errors?.title ? "title-error" : undefined
-            }
-          />
-        </label>
-        {actionData?.errors?.title && (
-          <div className="pt-1 text-red-700" id="title-error">
-            {actionData.errors.title}
-          </div>
-        )}
-      </div>
+      <TextField
+        autoFocus
+        aria-errormessage={
+          actionData?.errors?.title ? "title-error" : undefined
+        }
+        aria-invalid={actionData?.errors?.title ? true : undefined}
+        aria-required={actionData?.errors?.title !== undefined}
+        error={actionData?.errors?.title !== undefined}
+        helperText={actionData?.errors?.title}
+        label="Title"
+        name="title"
+        ref={titleRef}
+        required
+      />
 
       <div>
         <label className="flex w-full flex-col gap-1">
@@ -104,12 +101,9 @@ export default function NewNotePage() {
       </div>
 
       <div className="text-right">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
+        <Button variant="contained" color="primary" type="submit">
           Save
-        </button>
+        </Button>
       </div>
     </Form>
   );

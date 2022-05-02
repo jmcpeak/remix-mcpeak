@@ -29,3 +29,4 @@ function login({
 }
 
 Cypress.Commands.add("login", login);
+Cypress.config("defaultCommandTimeout", 20000);
