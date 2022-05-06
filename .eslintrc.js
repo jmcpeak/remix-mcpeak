@@ -15,6 +15,8 @@ module.exports = {
   ],
   rules: {
     "react/react-in-jsx-scope": "off",
+    "testing-library/prefer-screen-queries": "off",
+    "testing-library/await-async-query": "off",
   },
   // we're using vitest which has a very similar API to jest
   // (so the linting plugins work nicely), but it we have to explicitly
